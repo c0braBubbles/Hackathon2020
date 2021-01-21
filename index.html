@@ -1,0 +1,198 @@
+<!-- NB! Åpne alle html-filene i edge eller explorer pga server-oppdateringer og bugs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventful</title>
+    
+    <!-- GOOGLE API-ER TIL FONTS (HENTET FRA GOOGLE FONTS) -->
+    <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="top">
+        <div class="bars">
+            <div class="left">
+                <h2 class="tittle_head">Eventful</h2>
+            </div>
+
+            <div class="right">
+                <a class="active" href="#">Hjem</a>
+                <!-- De to linkene nedenfor går til et innlogginside som er kodet i NodeJS -->
+                <a href="http://studyhub.gravbrot.it/login">Logg inn</a>
+                <a href="http://studyhub.gravbrot.it/register">Registrer</a>
+                <a href="http://studyhub.gravbrot.it/login">Dine events</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Innledning til nettsiden -->
+    <div class="imagestuff">
+        <div class="txt">
+            <div class="border_wrap">
+                <h2>Velkommen til <i>Eventful</i> </h2>
+                <p>
+                    Vi i Bø er opptatte av et gøyalt sosialt sammhold. <br>
+                    På denne siden finner du en fin liten oversikt over alle gøyale <br> 
+                    arrangementene som skjer rundt i denne trivelige lille student bygda Bø
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Liste og søkeverktøy for arrangementene -->
+    <div class="events">
+        <h2>Finn ditt event!</h2>
+        <br><br><br>
+
+
+        <div class="spesifiction">
+            <!-- INPUT FELT MED MIN MAX VERDIER -->
+            <input type="number" min="1" max="31" id="dag" class="spes_inp" required placeholder="Dag">
+
+
+            <!-- VALG AV MÅNEDER (VALUES ER VIKTIG SENERE TIL SØKING) -->
+            <select id="maaned" name="måned" class="spes_inp">
+                <option value="maaned">Måned</option>
+                <option value="januar">Januar</option>
+                <option value="februar">Februar</option>
+                <option value="mars">Mars</option>
+                <option value="april">April</option>
+                <option value="mai">Mai</option>
+                <option value="juni">Juni</option>
+                <option value="juli">Juli</option>
+                <option value="august">August</option>
+                <option value="september">September</option>
+                <option value="oktober">Oktober</option>
+                <option value="nobember">November</option>
+                <option value="desember">Desember</option>
+            </select>
+
+
+            <!-- VALG AV ORGANISASJONER -->
+            <select id="organisasjon" name="organisasjon" class="spes_inp">
+                <option value="organisasjon">Organisasjon</option>
+                <option value="nito">Nito</option>
+                <option value="kroa">Kroa i Bø</option>
+                <option value="root">Root</option>
+            </select>
+            <br><br><br>
+
+            <button onclick="searchDate()" class="btn">Find event!</button>
+            <br><br><br><br><br><br><br>
+
+
+            <h2>Kommende hendelser:</h2>
+            <input type="text" id="sok" onkeyup="searchEvent()" placeholder="Søk etter event" class="spes_inp">
+
+
+            <!-- Liste med alle arrangementene -->
+            <ul id="test" class="event_ul">
+                <li class="event bingo">
+                    <h3>Bingo på kroa  &nbsp; 10. april</h3>
+                    <p>
+                        Kroa arrangerer en koselig aften med bingo <br>
+                        Jenter og gutter i alle aldere kan komme. <br>
+                        Premien blir fruktkake!!!
+                    </p>  
+                    <button id="bingoTing" class="btn_white">+ Legg til/Meld deg på</button>
+                </li>
+
+
+                <li class="event lazerworld">
+                    <h3>Lazerworld folkens!!!  &nbsp; 14. april</h3>
+                    <p>
+                        USN campus Bø blir gjort om til zoombie apocalypse <br>
+                        wasteland. Bli med og spill, knus en rute og flash hele <br>
+                        teamet ditt. Vinneren får gratis kinotur. Arrangert av nito
+                    </p>  
+                    <button id="laserTur" class="btn_white">+ Legg til/Meld deg på</button>
+                </li>
+
+
+                <li class="event chess">
+                    <h3>Sjakkturnering på biblioteket &nbsp; 12. april</h3>
+                    <p>
+                        Ta på deg Magnus Karlsen annsiktet, trim hjernebarken ditt og bli med <br>
+                        på Campus Bø sjakklubb sin sjakkturnering. Få heder, ære og skrytegrunnlag <!--Ingen bracket nødvendig her fant jeg ut-->
+                        for å være den smarteste i rommet. Arrangert av nito
+                    </p>  
+                    <button id="sjakkTurnering" class="btn_white">+ Legg til/Meld deg på</button>
+                </li>
+
+
+                <li class="event turbo">
+                    <h3>Turbonegro byr opp til kamp, på Kroa i Bø &nbsp; 17. mai</h3>
+                    <p>
+                        Klubb kroa har klart å få booket turbonegro til å holde konsert
+                        på kroa. Ta harley sykkelen din ned vel, og vær med på stemninga
+                    </p>  
+                    <button id="turboKonsert" class="btn_white">+ Legg til/Meld deg på</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="js/app.js"></script>
+    <!-- Firebase database -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDsMTfE8vkgE6CsUHLtK7mqVif0xpAual4",
+            authDomain: "the-cuban.firebaseapp.com",
+            databaseURL: "https://the-cuban.firebaseio.com",
+            projectId: "the-cuban",
+            storageBucket: "the-cuban.appspot.com",
+            messagingSenderId: "646336027967"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        // Variabler blir brukt til å sende til databasen, som søkeord av et slag
+        var bingo = "bingo";
+        var laser = "lazer";
+        var sjakk = "chess";
+        var turbonegro = "turbonegro";
+
+
+        // Referanse i databasen
+        var event = firebase.database().ref().child('event');
+
+        // Anonyme funksjoner som sender søkeordene til databasen (4 neste funksjoner)
+        var bingoEvent = document.getElementById("bingoTing").onclick = function(evt) {
+            evt.preventDefault();
+            event.push({
+                "yourEvent": bingo
+            });
+        }
+
+        var laserworld = document.getElementById("laserTur").onclick = function(evt) {
+            evt.preventDefault(); 
+            event.push({
+                "yourEvent": laser
+            });
+        }
+
+        var chess = document.getElementById("sjakkTurnering").onclick = function(evt) {
+            evt.preventDefault();
+            event.push({
+                "yourEvent": sjakk
+            });
+        }
+
+        var turb0 = document.getElementById("turboKonsert").onclick = function(evt) {
+            evt.preventDefault();
+            event.push({
+                "yourEvent": turbonegro
+            });
+        }
+    </script>
+</body>
+</html>

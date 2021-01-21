@@ -1,0 +1,354 @@
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+/* KODEN FOR TOP-BAREN */
+.bars {
+    z-index: 3;
+    background-color: #FF8096;
+    height: 50px;
+    color: black;
+    border: 1px solid darkgray;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    box-shadow: 1px 1px 3px lightgray;
+
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding: 4em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+.bars .left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    font-family: 'Trade Winds', cursive;
+}
+.bars .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.bars a {
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin: 0.7em;
+    color: #1167b1;
+    transition: 0.2s;
+}
+.bars a:hover {
+    border-radius: 2rem;
+    background-color: #eca1ac;
+    padding: 12px;
+    transition: 0.2s;
+}
+
+.tittle_head {
+    color: #1167b1;
+    padding: 4px;
+}
+
+.active {
+    border-radius: 2rem;
+    background-color: #eca1ac;
+    padding: 12px;
+}
+/* SLUTT */
+
+
+
+/* KODE FOR BILDET OG TEKSTEN INNI */
+.imagestuff {
+    background-image: url("../assets/lagingImage.jpg");
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 75%;
+    box-shadow:inset 0 0 0 2000px rgba(255, 0, 150, 0.3);
+}
+
+.txt {
+    padding: 25%;
+    padding-top: 13%;
+    padding-bottom: 5%;
+    text-align: center;
+    color: white;
+}
+.txt h2 {
+    font-size: 1.5vw;
+}
+.txt p {
+    font-size: 1vw;
+}
+.border_wrap {
+    border: 2px solid white;
+    background-color: rgb(0, 0, 205, .3);
+}
+/* SLUTT */
+
+
+
+/* KODE FOR EVENTS */
+.event_ul {
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.events {
+    position: absolute;
+    top: 85%;
+    text-align: center;
+    display: inline-block;
+    width: 99%;
+	align-items: center;
+    justify-content: center;
+}
+.events h2 {
+    text-align: center;
+    font-size: 2.5vw;
+    letter-spacing: 1px;
+}
+
+/* KODE FOR INPUT-FELTENE (DATO, MÅNED OG ORGANISASJON */
+.spes_inp {
+    font-family: "Raleway", sans-serif;
+    border-radius: 2rem;
+    border: 1px solid black;
+    padding: 6px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 200px;
+    font-size: 15px;
+}
+
+.btn {
+    border-radius: 2rem;
+    color: white;
+    font-family: "Raleway", sans-serif;
+    background-color: #1167b1;
+    font-size: 1.3vw;
+    padding: 9px;
+    border: 1px solid #1167b1;
+    transition: 0.3s;
+}
+.btn:hover {
+    background-color: white;
+    color: #1167b1;
+    border: 3px solid #1167b1;
+    transition: 0.3s;
+}
+/* SLUTT */
+
+
+
+/* BLOKKENE MED INFO OM EVENTS */
+.event {
+    background-color: #1167b1;
+    width: 45%;
+    display: inline-block;
+	/* align-items: center; */
+    /* justify-content: center; */
+    margin: 40px;
+    color: white;
+    height: 300px;
+    box-shadow: 5px 10px 8px 10px #888888;
+    opacity: 0.8;
+    transition: 1s;
+}
+.event:hover {
+    width: 48%;
+    height: 325px;
+    opacity: 1;
+    transition: 1s;
+}
+.event h3 {
+    text-align: left;
+    font-size: 1.7vw;
+    text-decoration: underline;
+}
+.event p, a {
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.2vw;
+    line-height: 30px;
+    text-align: left;
+    color: white;
+}
+
+.btn_white {
+    padding: 2.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-decoration: none;
+    background-color: rgba(69, 69, 69, 0);
+    color: white;
+    border: 2px solid white;
+    border-radius: 2em;
+    outline: none;
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 600;
+    font-size: 0.9vw;
+    letter-spacing: 1px;
+    transition: color .2s, background-color .2s;
+    text-align: center;
+    width: 300px;
+}
+.btn_white:hover {
+    background-color: white;
+    color: black;
+    transition: 0.2s;
+}
+
+.bingo {
+    background-image: url("../assets/bingo.jpg");
+    background-size: cover;
+}
+.lazerworld {
+    background-image: url("../assets/lazerworld.jpg");
+    background-size: cover;
+}
+.chess {
+    background-image: url("../assets/sjakk2.jpg");
+    background-size: cover;
+}
+.turbo {
+    background-image: url("../assets/turbo.jpg");
+    background-size: cover;
+}
+/* SLUTT */
+
+
+/* TIL SLUTT KODER FOR RESPONSIVT DESIGN (TABLET OG SMÅ PC-ER FØRST*/
+@media only screen and (max-width: 1024px) {
+    .imagestuff {
+        height: 50%;
+    }
+    .events {
+        top: 60%;
+    }
+    .txt {
+        padding-top: 25%;
+    }
+}
+/* 1668PX ER ØYEMÅL */
+@media only screen and (max-width: 1668px) {
+    .imagestuff {
+        height: 75%;
+    }
+    .events {
+        top: 95%;
+    }
+    .txt {
+        padding-top: 15%;
+    }
+}
+
+/* MOBILSKJERM */
+@media only screen and (max-width: 782px) {
+    .spes_inp {
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 150px;
+    }
+    .imagestuff { /* BILDE DU MØTER FØRST */
+        height: 50%;
+    } 
+    .events {
+        top: 50%;
+    }
+    .txt {
+        padding-top: 16%;
+    }
+    .events h2 {
+        font-size: 40px;
+    }
+    .event {
+        width: 90%;
+        height: 200px;
+    }
+    .bars {
+        height: 25px;
+    }
+    .bars a {
+        padding: 5px;
+        font-size: 8.5px;
+        margin: 0.4em;
+    }
+}
+
+/* Styles for login siden */
+.landing {
+	position: absolute;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+    min-height: 100%;
+    
+	background:
+    linear-gradient(
+		rgba(0, 0, 255, 0.4),
+		rgba(0, 0, 255, 0.4)
+    ), url(assets/lagingImage.jpg);
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+	color: white;
+}
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 25vh;
+
+	text-align: center;
+}
+
+.tittle {
+	font-family: 'Trade Winds', cursive;
+}
+
+.btn-white:active {
+	background-color: rgba(255, 255, 255, 0.75);
+	color: rgba(69, 69, 69);
+	border-color: rgba(255, 255, 255, 0.75);
+
+	transition: color .2s, background-color .2s, border-color .2s;
+}
+
+.btn-blue {
+	padding: 2.5em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	text-decoration: none;
+
+	background-color: rgba(69, 69, 69, 0);
+	color: white;
+
+	border: 1px solid white;
+	border-radius: 2em;
+	outline: none;
+
+	font-family: "proxima-nova", sans-serif;
+	font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    transition: color .2s, background-color .2s;
+}

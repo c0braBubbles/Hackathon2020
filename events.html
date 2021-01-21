@@ -1,0 +1,144 @@
+<!-- NB! Åpne alle html-filene i edge eller explorer pga server-oppdateringer og bugs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventful</title>
+
+    <!-- GOOGLE API-ER TIL FONTS (HENTET FRA GOOGLE FONTS) -->
+    <link href="https://fonts.googleapis.com/css?family=Trade+Winds&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+     <!-- TOP-BAR -->
+    <div class="top">
+        <div class="bars">
+            <div class="left">
+                <h2 class="tittle_head">Eventful</h2>
+            </div>
+
+            <div class="right">
+                <a href="index.html">Hjem</a>
+                <a href="http://studyhub.gravbrot.it/login">Logg inn</a>
+                <a href="http://studyhub.gravbrot.it/register">Registrer</a>
+                <a class="active" href="#">Dine events</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DIV HVOR DU SER ARRANGEMENTER DU HAR MELDT DEG PÅ (GJENNBRUK AV GAMLE CSS OG HTML KODER) -->
+    <div class="txt" style="color: black;">
+        <h2 id="nullEvents">Du er påmeldt på disse arrangementene:</h2>
+
+        <div class="spesifiction" style="font-size: 0.5vw;">
+            <p id="test">Du er ikke meldt på noen arrangementer... :(</p>
+        </div>
+    </div>
+
+
+    <!-- EVENTENE I SAMME REKKEFØLGE SOM PÅ INDEX FILA -->
+    <ul id="bingoEvent" class="event_ul" style="display: none;">
+        <li class="event bingo">
+            <h3>Bingo på kroa  &nbsp; 10. april</h3>
+            <p>
+                Kroa arrangerer en koselig aften med bingo <br>
+                Jenter og gutter i alle aldere kan komme. <br>
+                Premien blir fruktkake!!!
+            </p>  
+            <button class="btn_white">- Meld deg av</button>
+        </li>
+    </ul>
+
+
+    <ul id="laserEvent" class="event_ul" style="display: none;">
+        <li class="event lazerworld">
+            <h3>Lazerworld folkens!!!  &nbsp; 14. april</h3>
+            <p>
+                USN campus Bø blir gjort om til zoombie apocalypse <br>
+                wasteland. Bli med og spill, knus en rute og flash hele <br>
+                teamet ditt. Vinneren får gratis kinotur. Arrangert av nito
+            </p>  
+            <button class="btn_white">- Meld deg av</button>
+        </li>
+    </ul>
+
+
+    <ul id="sjakkEvent" class="event_ul" style="display: none;">
+        <li class="event chess">
+            <h3>Sjakkturnering på biblioteket &nbsp; 12. april</h3>
+            <p>
+                Ta på deg Magnus Karlsen annsiktet, trim hjernebarken ditt og bli med <br>
+                på Campus Bø sjakklubb sin sjakkturnering. Få heder, ære og skrytegrunnlag <!--Ingen bracket nødvendig her fant jeg ut-->
+                for å være den smarteste i rommet. Arrangert av nito
+            </p>  
+            <button class="btn_white">- Meld deg av</button>
+        </li>
+    </ul>
+    
+    
+    <ul id="turboEvent" class="event_ul" style="display: none;">
+        <li class="event turbo">
+            <h3>Turbonegro byr opp til kamp, på Kroa i Bø &nbsp; 17. mai</h3>
+            <p>
+                Klubb kroa har klart å få booket turbonegro til å holde konsert
+                på kroa. Ta harley sykkelen din ned vel, og vær med på stemninga
+            </p>  
+            <button id="turboKonsert" class="btn_white">- Meld deg av</button>
+        </li>
+    </ul>
+
+
+    <!-- Samme database script som på index for å kommunisere med databasen -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDsMTfE8vkgE6CsUHLtK7mqVif0xpAual4",
+            authDomain: "the-cuban.firebaseapp.com",
+            databaseURL: "https://the-cuban.firebaseio.com",
+            projectId: "the-cuban",
+            storageBucket: "the-cuban.appspot.com",
+            messagingSenderId: "646336027967"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        // Variabler hentet fra HTML-koden
+        var eventTurbo = document.getElementById("turboEvent");
+        var bingoEvent = document.getElementById("bingoEvent");
+        var lazerWorldEvent = document.getElementById("laserEvent");
+        var chessEvent = document.getElementById("sjakkEvent");
+
+
+        // Referanse til databasen, som på index
+        var event = firebase.database().ref().child('event');
+
+
+        // henter søkeordene fra index ned fra databasen igjen
+        event.on("child_added", function(snapshot) {
+            var event2 = snapshot.val();
+            // Sjekker om søkeordet matcher med stringer og gjør arrangementene dine synlige
+            if(event2.yourEvent === "turbonegro") {
+                eventTurbo.style.display = "flex";
+                document.getElementById("nullEvents").style.display = "none";
+            }
+            else if(event2.yourEvent === "bingo") {
+                bingoEvent.style.display = "flex";
+                document.getElementById("nullEvents").style.display = "none";
+            }
+            else if(event2.yourEvent === "lazer") {
+                lazerWorldEvent.style.display = "flex";
+                document.getElementById("nullEvents").style.display = "none";
+
+            }
+            else if(event2.yourEvent === "chess") {
+                chessEvent.style.display = "flex";
+                document.getElementById("nullEvents").style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
